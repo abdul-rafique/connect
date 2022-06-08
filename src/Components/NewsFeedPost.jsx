@@ -1,29 +1,28 @@
 import React, { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
+import { Link } from "react-router-dom";
 import {
   IoEllipsisHorizontal,
   IoHeartOutline,
   IoChatboxOutline,
   IoShareSocialOutline,
   IoBookmarkOutline,
-  IoPerson,
 } from "react-icons/io5";
 
 import PostUser from "./PostUser";
-import { Link } from "react-router-dom";
 import PostActionButton from "./PostActionButton";
-import FormTextArea from "./FormTextArea";
+import NewComment from "./NewComment";
 
-function Post() {
+function NewsFeedPost() {
   return (
-    <div className="w-full flex flex-col gap-3 p-5 rounded-lg shadow">
-      {/* Post Topbar */}
+    <div className="w-full flex flex-col gap-3 p-5 rounded-lg shadow bg-white">
+      {/* NewsFeedPost Topbar */}
       <div className="flex justify-between items-start">
         <PostUser />
         <Menu as="div" className="relative inline-block text-left">
           <div>
             <Menu.Button
-              className={`rounded-full p-2 focus:ring-2 focus:ring-primary hover:text-primary focus:text-primary`}
+              className={`rounded-full p-2 text-dark/80 focus:ring-2 focus:ring-primary hover:text-primary focus:text-primary`}
             >
               <IoEllipsisHorizontal size={20} />
             </Menu.Button>
@@ -56,7 +55,7 @@ function Post() {
         </Menu>
       </div>
 
-      {/* Post Content */}
+      {/* NewsFeedPost Content */}
       <div className="flex flex-col gap-3">
         <p className=" leading-tight">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, maxime
@@ -80,54 +79,48 @@ function Post() {
               className="shrink-0 min-w-full min-h-full"
             />
           </div>
-          <div className="flex items-center justify-center overflow-hidden rounded-lg">
+          <div className="relative flex items-center justify-center overflow-hidden rounded-lg">
             <img
               src={process.env.PUBLIC_URL + "./dummy-3.jpg"}
               alt=""
               className="shrink-0 min-w-full min-h-full"
             />
+            <div className="absolute inset-0 bg-dark/80 flex items-center justify-center">
+              <span className="text-xl text-white font-semibold">10+ More</span>
+            </div>
           </div>
-          <Link to="/" className="absolute inset-0"></Link>
+          <Link to="/single_post" className="absolute inset-0"></Link>
         </div>
       </div>
+      <div>
+        <hr className="border-t-gray" />
 
-      <hr className="border-t-gray" />
+        {/* NewsFeedPost Actions (Likes, Comments, Shares, Saved) */}
+        <div className="flex justify-between gap-3 my-1">
+          <PostActionButton
+            text="120k Likes"
+            leadingIcon={<IoHeartOutline size={20} />}
+          />
+          <PostActionButton
+            text="25 Comments"
+            leadingIcon={<IoChatboxOutline size={20} />}
+          />
+          <PostActionButton
+            text="231 Shares"
+            leadingIcon={<IoShareSocialOutline size={20} />}
+          />
+          <PostActionButton
+            text="12 Saved"
+            leadingIcon={<IoBookmarkOutline size={20} />}
+          />
+        </div>
 
-      {/* Post Actions (Likes, Comments, Shares, Saved) */}
-      <div className="flex justify-between gap-3">
-        <PostActionButton
-          text="120k Likes"
-          leadingIcon={<IoHeartOutline size={20} />}
-        />
-        <PostActionButton
-          text="25 Comments"
-          leadingIcon={<IoChatboxOutline size={20} />}
-        />
-        <PostActionButton
-          text="231 Shares"
-          leadingIcon={<IoShareSocialOutline size={20} />}
-        />
-        <PostActionButton
-          text="12 Saved"
-          leadingIcon={<IoBookmarkOutline size={20} />}
-        />
+        <hr className="border-t-gray" />
       </div>
-
-      <hr className="border-t-gray" />
-      {/* Post Direct Comment */}
-      <div className="flex justify-between items-center gap-2">
-        <Link to="/" className="p-1.5 rounded-full ring-2 ring-gray">
-          <IoPerson size={20} className="text-gray" />
-        </Link>
-
-        <FormTextArea
-          rows={1}
-          extraCssClass="border-none rounded-full bg-gray/20"
-          placeholder="Write your comment..."
-        />
-      </div>
+      {/* NewsFeedPost Direct Comment */}
+      <NewComment />
     </div>
   );
 }
 
-export default Post;
+export default NewsFeedPost;

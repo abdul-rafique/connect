@@ -5,7 +5,7 @@ import { IoCaretDown, IoPerson } from "react-icons/io5";
 
 export default function Navbar(props) {
   return (
-    <div className="bg-primary text-white px-10 py-4 flex justify-between items-center">
+    <div className="fixed top-0 inset-x-0 z-20 bg-primary text-white px-10 py-4 flex justify-between items-center">
       <Link to="/" className="text-2xl font-semibold">
         Logo
       </Link>

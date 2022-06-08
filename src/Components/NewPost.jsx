@@ -5,12 +5,12 @@ import FormTextArea from "./FormTextArea";
 
 function NewPost() {
   return (
-    <div className="w-full p-5 rounded-lg shadow">
+    <div className="w-full p-5 rounded-lg shadow bg-white">
       <h4 className="mb-2 text-dark/80 text-lg font-semibold">
         Post Something
       </h4>
 
-      <hr className="mb-3 border-t-dark/20" />
+      <hr className="mb-3 border-t-gray" />
 
       <div className="flex justify-between items-center gap-2">
         <Link to="/" className="p-2 rounded-full ring-2 ring-gray">

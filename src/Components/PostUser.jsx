@@ -9,7 +9,7 @@ function PostUser() {
         className="w10 opacity-40"
       />
       <div className="flex flex-col">
-        <span className="text-lg font-semibold">Post User</span>
+        <span className="text-lg font-semibold text-dark/80">Post User</span>
         <small className="text-gray">07 June at 10:33 AM</small>
       </div>
     </div>
