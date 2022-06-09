@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { IoPerson, IoImagesOutline } from "react-icons/io5";
+import { IoPerson } from "react-icons/io5";
 import FormTextArea from "./FormTextArea";
+import NewPostModal from "./NewPostModal";
 
 function NewPost() {
   return (
@@ -20,18 +21,10 @@ function NewPost() {
         <FormTextArea
           rows={1}
           placeholder="What's in your mind?"
-          extraCssClass="border-none rounded-full"
+          extraCssClass="border-none rounded-full bg-gray/20"
         />
 
-        <div className="flex-1 p-2">
-          <label htmlFor="file-input">
-            <IoImagesOutline
-              size={28}
-              className="text-dark/40 cursor-pointer transition-colors hover:text-primary"
-            />
-          </label>
-          <input type="file" className="hidden" id="file-input" />
-        </div>
+        <NewPostModal />
       </div>
     </div>
   );
