@@ -1,3 +1,5 @@
+const colors = require("tailwindcss/colors");
+
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
@@ -8,6 +10,7 @@ module.exports = {
       white: "#fff",
       dark: "#000",
       gray: "#adb5bd",
+      danger: colors.red,
     },
     ripple: (theme) => ({
       colors: theme("colors"),

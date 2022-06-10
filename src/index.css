@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+::-webkit-scrollbar {
+    @apply w-1.5 bg-accent/40;
+}
+
+
+::-webkit-scrollbar-thumb {
+    @apply bg-primary/80 hover:bg-primary rounded-full;
+}

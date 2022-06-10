@@ -1,13 +1,18 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { IoImagesOutline, IoCloudUploadOutline } from "react-icons/io5";
+import {
+  IoImagesOutline,
+  IoCloseOutline,
+  IoDuplicateOutline,
+} from "react-icons/io5";
 
 import PostUser from "./PostUser";
 import FormTextArea from "./FormTextArea";
-import FormDropFileField from "./FormDropFileField";
+import FormFileField from "./FormFileField";
 
 function NewPostModal() {
   const [isOpen, setIsOpen] = useState(false);
+  const [postMedia, setPostMedia] = useState([]);
 
   const closeModal = () => {
     setIsOpen(false);
@@ -16,6 +21,52 @@ function NewPostModal() {
   const openModal = () => {
     setIsOpen(true);
   };
+
+  const handleFileField = (e) => {
+    if (e.target.files) {
+      const fileArray = Array.from(e.target.files).map((file) => ({
+        data: file,
+        url: URL.createObjectURL(file),
+      }));
+
+      setPostMedia((prevMedia) => prevMedia.concat(fileArray));
+    }
+  };
+
+  const closePostMedia = () => {
+    setPostMedia([]);
+  };
+
+  const renderPostMedia = (source) => {
+    let count = 0;
+
+    const countExtraMedia = () => {
+      return (count = count + 1);
+    };
+
+    return postMedia.map(
+      (file, index) =>
+        index <= 5 && (
+          <div
+            key={index}
+            className="relative max-h-36 flex items-center justify-center overflow-hidden rounded-lg shadow-md"
+          >
+            <img src={file.url} className="shrink-0 min-w-full min-h-full" />
+            {index >= 5 && (
+              <div className="absolute inset-0 bg-dark/50 flex items-center justify-center">
+                <span className="text-xl text-white font-semibold">
+                  {countExtraMedia()}+ More
+                </span>
+              </div>
+            )}
+          </div>
+        )
+    );
+  };
+
+  useEffect(() => {
+    console.log(postMedia);
+  }, [postMedia]);
 
   return (
     <>
@@ -61,9 +112,37 @@ function NewPostModal() {
                       extraCssClass="border-none"
                       rows={4}
                     />
+                    {postMedia.length === 0 && (
+                      <FormFileField onChange={handleFileField} />
+                    )}
 
-                    <FormDropFileField />
+                    {postMedia.length !== 0 && (
+                      <div className="relative grid grid-cols-3 gap-3 p-3 rounded-md border border-gray">
+                        {renderPostMedia(postMedia)}
 
+                        <div className="absolute top-2 inset-x-2 flex justify-between items-center">
+                          <label className="px-2 py-1 border border-gray rounded bg-white cursor-pointer font-semibold">
+                            <span className="flex items-center gap-2">
+                              <IoDuplicateOutline size={20} />
+                              <span>Add Photos/Videos</span>
+                            </span>
+                            <input
+                              type="file"
+                              multiple
+                              onChange={handleFileField}
+                              className="hidden"
+                            />
+                          </label>
+                          <button
+                            type="button"
+                            className="p-0.5 rounded-full shadow-md border border-gray bg-white  text-dark/80"
+                            onClick={closePostMedia}
+                          >
+                            <IoCloseOutline size={20} />
+                          </button>
+                        </div>
+                      </div>
+                    )}
                     <button
                       type="submit"
                       className="w-full p-2.5 bg-primary text-white font-semibold rounded"
