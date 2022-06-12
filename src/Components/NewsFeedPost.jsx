@@ -1,58 +1,27 @@
-import React, { Fragment } from "react";
-import { Menu, Transition } from "@headlessui/react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import {
-  IoEllipsisHorizontal,
   IoHeartOutline,
   IoChatboxOutline,
   IoShareSocialOutline,
-  IoBookmarkOutline,
 } from "react-icons/io5";
 
 import PostUser from "./PostUser";
 import PostActionButton from "./PostActionButton";
 import NewComment from "./NewComment";
+import PostDetailsDialog from "./PostDetailsDialog";
 
 function NewsFeedPost() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div className="w-full flex flex-col gap-3 p-5 rounded-lg shadow bg-white">
       {/* NewsFeedPost Topbar */}
       <div className="flex justify-between items-start">
         <PostUser />
-        <Menu as="div" className="relative inline-block text-left">
-          <div>
-            <Menu.Button
-              className={`rounded-full p-2 text-dark/80 focus:ring-2 focus:ring-primary hover:text-primary focus:text-primary`}
-            >
-              <IoEllipsisHorizontal size={20} />
-            </Menu.Button>
-          </div>
-          <Transition
-            as={Fragment}
-            enter="transition ease-out duration 100"
-            enterFrom="transform opacity-0 scale-95"
-            enterTo="transform opacity-100 scale-100"
-            leave="transition ease-in duration-75"
-            leaveFrom="transform opacity-100 scale-100"
-            leaveTo="transform opacity-0 scale-95"
-          >
-            <Menu.Items className="absolute right-0 mt-1 w-48 origin-top-right divide-y bg-white rounded-md shadow-md ring-1 ring-gray/30">
-              <div className="p-1">
-                <Menu.Item>
-                  {({ active }) => (
-                    <button
-                      className={`${
-                        active ? "bg-accent/30 text-primary" : "text-gray"
-                      } group flex w-full items-center rounded-md p-2 text-sm`}
-                    >
-                      Option 1
-                    </button>
-                  )}
-                </Menu.Item>
-              </div>
-            </Menu.Items>
-          </Transition>
-        </Menu>
       </div>
 
       {/* NewsFeedPost Content */}
@@ -89,9 +58,15 @@ function NewsFeedPost() {
               <span className="text-xl text-white font-semibold">10+ More</span>
             </div>
           </div>
-          <Link to="/single_post" className="absolute inset-0"></Link>
+          <span
+            className="absolute inset-0 cursor-pointer"
+            onClick={() => setIsModalOpen(true)}
+          />
         </div>
       </div>
+
+      <PostDetailsDialog isOpen={isModalOpen} closeModal={closeModal} />
+
       <div>
         <hr className="border-t-gray" />
 
@@ -108,10 +83,6 @@ function NewsFeedPost() {
           <PostActionButton
             text="231 Shares"
             leadingIcon={<IoShareSocialOutline size={20} />}
-          />
-          <PostActionButton
-            text="12 Saved"
-            leadingIcon={<IoBookmarkOutline size={20} />}
           />
         </div>
 

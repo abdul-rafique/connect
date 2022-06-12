@@ -3,17 +3,18 @@ import React from "react";
 import PostUser from "../Components/PostUser";
 import PostActions from "../Components/PostActions";
 import NewComment from "../Components/NewComment";
+import SinglePostMediaSlider from "../Components/SinglePostMediaSlider";
 
 function SinglePost() {
   return (
-    <div className="w-full flex flex-col gap-3 p-5 rounded-lg shadow bg-white">
+    <div className="flex flex-col gap-3 p-5 rounded-lg shadow bg-white">
       {/* Post Topbar */}
       <div className="flex justify-between items-start">
         <PostUser />
       </div>
 
       {/* Post Content */}
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col justify-center items-center gap-3">
         <p className=" leading-tight">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, maxime
           eligendi exercitationem fuga corporis delectus nulla, labore dolore
@@ -21,8 +22,8 @@ function SinglePost() {
           assumenda architecto voluptates!
         </p>
 
-        {/* <PostMediaSlider /> */}
-        <div className="flex flex-col gap-3">
+        <SinglePostMediaSlider />
+        {/* <div className="flex flex-col gap-3">
           <div className="row-span-2 flex justify-center items-center overflow-hidden rounded-lg">
             <img
               src={process.env.PUBLIC_URL + "./dummy-1.jpg"}
@@ -58,7 +59,7 @@ function SinglePost() {
               className="shrink-0 min-w-full min-h-full"
             />
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div>

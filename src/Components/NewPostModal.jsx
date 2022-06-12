@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import {
   IoImagesOutline,
@@ -24,12 +24,16 @@ function NewPostModal() {
 
   const handleFileField = (e) => {
     if (e.target.files) {
-      const fileArray = Array.from(e.target.files).map((file) => ({
-        data: file,
-        url: URL.createObjectURL(file),
-      }));
+      const fileArray = Array.from(e.target.files)
+        .map((file) => ({
+          data: file,
+          url: URL.createObjectURL(file),
+        }))
+        .concat(e.target.files);
 
       setPostMedia((prevMedia) => prevMedia.concat(fileArray));
+
+      Array.from(e.target.files).map((file) => URL.revokeObjectURL(file));
     }
   };
 
@@ -37,11 +41,9 @@ function NewPostModal() {
     setPostMedia([]);
   };
 
-  const renderPostMedia = (source) => {
-    let count = 0;
-
+  const renderPostMedia = () => {
     const countExtraMedia = () => {
-      return (count = count + 1);
+      return postMedia.length > 5 && postMedia.length - 5;
     };
 
     return postMedia.map(
@@ -51,11 +53,15 @@ function NewPostModal() {
             key={index}
             className="relative max-h-36 flex items-center justify-center overflow-hidden rounded-lg shadow-md"
           >
-            <img src={file.url} className="shrink-0 min-w-full min-h-full" />
+            <img
+              src={file.url}
+              className="shrink-0 min-w-full min-h-full"
+              alt={file.data.name}
+            />
             {index >= 5 && (
-              <div className="absolute inset-0 bg-dark/50 flex items-center justify-center">
-                <span className="text-xl text-white font-semibold">
-                  {countExtraMedia()}+ More
+              <div className="absolute inset-0 bg-dark/60 flex items-center justify-center">
+                <span className="text-2xl text-white font-semibold">
+                  +{countExtraMedia()}
                 </span>
               </div>
             )}
@@ -63,10 +69,6 @@ function NewPostModal() {
         )
     );
   };
-
-  useEffect(() => {
-    console.log(postMedia);
-  }, [postMedia]);
 
   return (
     <>
@@ -112,15 +114,14 @@ function NewPostModal() {
                       extraCssClass="border-none"
                       rows={4}
                     />
+
                     {postMedia.length === 0 && (
                       <FormFileField onChange={handleFileField} />
                     )}
 
                     {postMedia.length !== 0 && (
                       <div className="relative grid grid-cols-3 gap-3 p-3 rounded-md border border-gray">
-                        {renderPostMedia(postMedia)}
-
-                        <div className="absolute top-2 inset-x-2 flex justify-between items-center">
+                        <div className="col-span-3 flex justify-between items-center">
                           <label className="px-2 py-1 border border-gray rounded bg-white cursor-pointer font-semibold">
                             <span className="flex items-center gap-2">
                               <IoDuplicateOutline size={20} />
@@ -141,11 +142,13 @@ function NewPostModal() {
                             <IoCloseOutline size={20} />
                           </button>
                         </div>
+
+                        {renderPostMedia(postMedia)}
                       </div>
                     )}
                     <button
                       type="submit"
-                      className="w-full p-2.5 bg-primary text-white font-semibold rounded"
+                      className="w-full p-2 bg-primary text-white font-semibold rounded"
                     >
                       Post
                     </button>

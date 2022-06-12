@@ -4,7 +4,6 @@ import {
   IoHeartOutline,
   IoChatboxOutline,
   IoShareSocialOutline,
-  IoBookmarkOutline,
 } from "react-icons/io5";
 
 function PostActions() {
@@ -21,10 +20,6 @@ function PostActions() {
       <PostActionButton
         text="231 Shares"
         leadingIcon={<IoShareSocialOutline size={20} />}
-      />
-      <PostActionButton
-        text="12 Saved"
-        leadingIcon={<IoBookmarkOutline size={20} />}
       />
     </div>
   );
