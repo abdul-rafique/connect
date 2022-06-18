@@ -3,10 +3,14 @@
 @tailwind utilities;
 
 ::-webkit-scrollbar {
-    @apply w-1.5 bg-accent/40;
+  @apply w-1.5 bg-accent/40;
 }
 
-
 ::-webkit-scrollbar-thumb {
-    @apply bg-primary/80 hover:bg-primary rounded-full;
+  @apply bg-primary/80 hover:bg-primary rounded-full;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  @apply text-white -translate-y-1/2;
 }

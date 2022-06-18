@@ -11,7 +11,7 @@ import NewComment from "./NewComment";
 import PostDetailsDialog from "./PostDetailsDialog";
 
 function NewsFeedPost() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(true);
 
   const closeModal = () => {
     setIsModalOpen(false);
