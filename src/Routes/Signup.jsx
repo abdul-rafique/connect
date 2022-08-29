@@ -7,11 +7,11 @@ import PrimaryButton from "../Components/PrimaryButton";
 
 export default function SignUp() {
   return (
-    <div className="min-w-fit max-w-sm mx-auto my-10 p-5 border border-primary rounded shadow-md shadow-accent/50">
+    <div className="min-w-fit max-w-sm mx-auto my-10 p-8 border border-primary rounded shadow-md shadow-accent/50">
       <h2 className="text-3xl font-semibold text-center mb-5 text-primary">
         Sign Up
       </h2>
-      <form action="">
+      <form action="" className="w-80">
         <div className="mb-3">
           <FormField label="Username" type="text" />
         </div>

@@ -13,12 +13,12 @@ function FormPasswordField({ label, id }) {
       <div className="flex">
         <input
           type={showPass ? "text" : "password"}
-          className="block w-full rounded-l focus:border-primary focus:ring-primary"
+          className="block w-full rounded-l border-gray focus:border-primary focus:ring-primary"
           id={id}
         />
         <button
           type="button"
-          className="px-3 bg-accent/30 border-r border-y border-dark/40 rounded-r"
+          className="px-3 text-primary bg-accent/30 border-r border-y border-gray rounded-r"
           onClick={handlePassPrivacy}
         >
           {showPass ? (

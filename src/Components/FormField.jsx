@@ -6,7 +6,7 @@ function FormField({ label, type, placeholder, id }) {
       <label htmlFor={`#${id}`}>{label}</label>
       <input
         type={type}
-        className="block w-full rounded focus:border-primary focus:ring-primary"
+        className="block w-full rounded border-gray focus:border-primary focus:ring-primary"
         placeholder={placeholder}
         id={id}
       />

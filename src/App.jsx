@@ -15,6 +15,7 @@ import User from "./Routes/User/index";
 import About from "./Routes/User/About";
 import Friends from "./Routes/User/Friends";
 import Posts from "./Routes/User/Posts";
+import ForgotPass from "./Routes/ForgotPass";
 
 function App() {
   const isUser = true;
@@ -31,6 +32,7 @@ function App() {
             />
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<SignUp />} />
+            <Route path="forgot-password" element={<ForgotPass />} />
             <Route path="user" element={<User />}>
               <Route index element={<Posts />} />
               <Route path="friends" element={<Friends />} />
