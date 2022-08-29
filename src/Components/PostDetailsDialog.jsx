@@ -1,6 +1,6 @@
 import React from "react";
 import { Dialog } from "@headlessui/react";
-import { IoCloseOutline, IoExpandOutline } from "react-icons/io5";
+import { IoCloseOutline } from "react-icons/io5";
 import SinglePostMediaSlider from "./SinglePostMediaSlider";
 import UserAvatar from "./UserAvatar";
 import PostUser from "./PostUser";
@@ -28,14 +28,6 @@ function PostDetailsDialog({ isOpen, closeModal }) {
                   </button>
                   <Dialog.Title className="text-3xl">Logo</Dialog.Title>
                 </div>
-                {/* <div>
-                  <button
-                    type="button"
-                    className="outline-none rounded-full p-1.5 hover:bg-gray/30"
-                  >
-                    <IoExpandOutline size={24} />
-                  </button>
-                </div> */}
               </div>
 
               {/* Dialog Post Slider */}
@@ -47,7 +39,7 @@ function PostDetailsDialog({ isOpen, closeModal }) {
             {/* Dialog Right Section */}
             <section className="lg:relative flex flex-col gap-3 pb-16 bg-white md:col-span-4 lg:col-span-1 lg:min-h-screen lg:max-h-screen">
               <div className="max-w-fit p-2 pb-0 self-end hidden lg:block">
-                <UserAvatar color="dark" size={20} />
+                <UserAvatar color="dark" size={20} padding={2} />
               </div>
 
               <hr className="border-t-gray" />

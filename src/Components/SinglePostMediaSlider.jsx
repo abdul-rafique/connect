@@ -16,7 +16,7 @@ function SinglePostMediaSlider() {
       className="flex items-center min-h-full"
     >
       {[1, 2, 3].map((slideNo) => (
-        <SwiperSlide className="">
+        <SwiperSlide key={slideNo} className="">
           <div className="flex flex-1 justify-center items-center overflow-hidden">
             {/* Slide {slideNo} */}
             <img

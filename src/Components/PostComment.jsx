@@ -4,7 +4,7 @@ import UserAvatar from "./UserAvatar";
 function Comment() {
   return (
     <div className="flex items-start gap-3">
-      <UserAvatar />
+      <UserAvatar padding={2} />
       <div className="flex flex-col items-start">
         <p className="p-2 text-sm rounded-lg bg-gray/20">
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus

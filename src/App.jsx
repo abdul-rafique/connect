@@ -11,7 +11,10 @@ import Navbar from "./Components/Navbar";
 import Login from "./Routes/Login";
 import NewsFeed from "./Routes/NewsFeed";
 import SignUp from "./Routes/Signup";
-// import SinglePost from "./Routes/SinglePost";
+import User from "./Routes/User/index";
+import About from "./Routes/User/About";
+import Friends from "./Routes/User/Friends";
+import Posts from "./Routes/User/Posts";
 
 function App() {
   const isUser = true;
@@ -24,13 +27,15 @@ function App() {
           <Routes>
             <Route
               index
-              path="/"
               element={isUser ? <NewsFeed /> : <Navigate to="/login" replace />}
             />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<SignUp />} />
-
-            {/* <Route path="/single_post" element={<SinglePost />} /> */}
+            <Route path="login" element={<Login />} />
+            <Route path="signup" element={<SignUp />} />
+            <Route path="user" element={<User />}>
+              <Route index element={<Posts />} />
+              <Route path="friends" element={<Friends />} />
+              <Route path="about" element={<About />} />
+            </Route>
           </Routes>
         </div>
       </div>

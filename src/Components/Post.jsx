@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   IoHeartOutline,
   IoChatboxOutline,
@@ -10,21 +10,34 @@ import PostActionButton from "./PostActionButton";
 import NewComment from "./NewComment";
 import PostDetailsDialog from "./PostDetailsDialog";
 
-function NewsFeedPost() {
-  const [isModalOpen, setIsModalOpen] = useState(true);
+function Post() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [img1, setImg1] = useState();
+  const [img2, setImg2] = useState();
+  const [img3, setImg3] = useState();
 
   const closeModal = () => {
     setIsModalOpen(false);
   };
 
+  useEffect(() => {
+    const unsubscribe = () => {
+      setImg1(Math.trunc(Math.random() * 100));
+      setImg2(Math.trunc(Math.random() * 200));
+      setImg3(Math.trunc(Math.random() * 300));
+    };
+
+    return unsubscribe();
+  }, []);
+
   return (
     <div className="w-full flex flex-col gap-3 p-5 rounded-lg shadow bg-white">
-      {/* NewsFeedPost Topbar */}
+      {/* Post Topbar */}
       <div className="flex justify-between items-start">
         <PostUser />
       </div>
 
-      {/* NewsFeedPost Content */}
+      {/* Post Content */}
       <div className="flex flex-col gap-3">
         <p className=" leading-tight">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, maxime
@@ -36,25 +49,25 @@ function NewsFeedPost() {
         <div className="relative max-h-64 lg:max-h-96 grid grid-rows-2 grid-cols-2 gap-3">
           <div className="row-span-2 flex justify-center items-center overflow-hidden rounded-lg">
             <img
-              src={process.env.PUBLIC_URL + "./dummy-1.jpg"}
+              src={`https://picsum.photos/id/${img1}/400`}
               alt=""
               className="shrink-0 min-w-full min-h-full"
             />
           </div>
           <div className="flex justify-center items-center overflow-hidden rounded-lg">
             <img
-              src={process.env.PUBLIC_URL + "./dummy-2.jpg"}
+              src={`https://picsum.photos/id/${img2}/400`}
               alt=""
               className="shrink-0 min-w-full min-h-full"
             />
           </div>
           <div className="relative flex items-center justify-center overflow-hidden rounded-lg">
             <img
-              src={process.env.PUBLIC_URL + "./dummy-3.jpg"}
+              src={`https://picsum.photos/id/${img3}/400`}
               alt=""
               className="shrink-0 min-w-full min-h-full"
             />
-            <div className="absolute inset-0 bg-dark/80 flex items-center justify-center">
+            <div className="absolute inset-0 bg-dark/50 flex items-center justify-center">
               <span className="text-xl text-white font-semibold">10+ More</span>
             </div>
           </div>
@@ -70,7 +83,7 @@ function NewsFeedPost() {
       <div>
         <hr className="border-t-gray" />
 
-        {/* NewsFeedPost Actions (Likes, Comments, Shares, Saved) */}
+        {/* Post Actions (Likes, Comments, Shares, Saved) */}
         <div className="flex justify-between gap-3 my-1">
           <PostActionButton
             text="120k Likes"
@@ -88,10 +101,10 @@ function NewsFeedPost() {
 
         <hr className="border-t-gray" />
       </div>
-      {/* NewsFeedPost Direct Comment */}
+      {/* Post Direct Comment */}
       <NewComment />
     </div>
   );
 }
 
-export default NewsFeedPost;
+export default Post;

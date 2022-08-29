@@ -1,3 +1,4 @@
+const { transparent } = require("tailwindcss/colors");
 const colors = require("tailwindcss/colors");
 
 module.exports = {
@@ -11,6 +12,7 @@ module.exports = {
       dark: "#000",
       gray: "#adb5bd",
       danger: colors.red,
+      transparent: transparent,
     },
     ripple: (theme) => ({
       colors: theme("colors"),
