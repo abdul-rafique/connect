@@ -1,15 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import PrimaryButton from "./PrimaryButton";
+import SecondaryButton from "./SecondaryButton";
 import UserMenu from "./UserMenu";
 
-export default function Navbar(props) {
+export default function Navbar({ isUser }) {
   return (
-    <div className="fixed top-0 inset-x-0 z-20 px-10 py-4 flex justify-between items-center bg-white/90 text-primary shadow backdrop-filter backdrop-blur">
+    <div className="fixed top-0 inset-x-0 z-20 px-5 py-1 flex justify-between items-center bg-white/90 text-primary shadow backdrop-filter backdrop-blur">
       <Link to="/" className="text-2xl font-semibold">
         Logo
       </Link>
 
-      {props.isUser === true ? (
+      {isUser === true ? (
         <UserMenu />
       ) : (
         // <div className="relative" onClick={handleDropdown}>
@@ -57,18 +59,12 @@ export default function Navbar(props) {
         //   )}
         // </div>
         <div className="flex items-center gap-3">
-          <Link
-            to="/login"
-            className="px-3 py-1.5 border-2 border-white text-white font-semibold rounded-md transition-colors duration-300 hover:bg-white hover:text-primary  hover:border-2"
-          >
+          <PrimaryButton to="/login" as="link">
             Login
-          </Link>
-          <Link
-            to="/signup"
-            className="px-3 py-1.5 border-2 border-white text-white  font-semibold rounded-md transition-colors duration-300 hover:bg-white hover:text-primary hover:border-2"
-          >
+          </PrimaryButton>
+          <SecondaryButton to="/signup" as="link">
             Signup
-          </Link>
+          </SecondaryButton>
         </div>
       )}
     </div>

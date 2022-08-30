@@ -1,6 +1,8 @@
 import React from "react";
 
-function FormField({ label, type, placeholder, id }) {
+function FormField(props) {
+  const { label, type, placeholder, id } = props;
+
   return (
     <>
       <label htmlFor={`#${id}`}>{label}</label>
@@ -9,6 +11,7 @@ function FormField({ label, type, placeholder, id }) {
         className="block w-full rounded border-gray focus:border-primary focus:ring-primary"
         placeholder={placeholder}
         id={id}
+        {...props}
       />
     </>
   );
